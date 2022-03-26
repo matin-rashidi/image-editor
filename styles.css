@@ -42,8 +42,8 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: ew-resize;
   background: #fff;
   border-radius: 16px;
-  border: 2px solid #6007bd;
-  box-shadow: -84px 0 0 80px #6007bd;
+  border: 2px solid #272727;
+  box-shadow: -84px 0 0 80px #272727;
 }
 
 input[type="range"]::-moz-range-track {
@@ -58,14 +58,14 @@ input[type="range"]::-moz-range-thumb {
   cursor: ew-resize;
   background: #fff;
   border-radius: 16px;
-  border: 2px solid #6007bd;
-  box-shadow: 84px 0 0 80px #6007bd;
+  border: 2px solid #272727;
+  box-shadow: 84px 0 0 80px #272727;
 }
 
 header {
   width: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   text-align: center;
@@ -82,8 +82,8 @@ main {
 }
 
 main aside {
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 10px;
@@ -92,11 +92,11 @@ main aside {
   margin: 1rem;
   padding: 1.5rem 0;
   border: 7px solid transparent;
-  min-height: 200px;
+  min-height: 500px;
 }
 
 main aside::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
 }
 
 main aside::-webkit-scrollbar-thumb {
@@ -154,16 +154,16 @@ main aside::-webkit-scrollbar-thumb {
 }
 
 .preview {
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 10px;
   height: calc(100vh - 5.5rem);
   margin: 1rem 0 1rem 1rem;
   position: relative;
-  min-height: 200px;
   overflow: auto;
+  min-height: 500px;
 }
 
 .imageSection {
@@ -178,7 +178,7 @@ main aside::-webkit-scrollbar-thumb {
   width: 70%;
   height: auto;
   transition: all .2s ease-in-out;
-  max-height: 95%;
+  max-width: 600px;
 }
 
 .uploadSection {
