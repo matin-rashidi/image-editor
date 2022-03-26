@@ -58,6 +58,16 @@ deleteImageBtn.addEventListener("click", () => {
     addedImage.remove();
     fileInput.value = null;
   }
+  rangeInputs.forEach((input) => {
+   const inputID = input.childNodes[3].id;
+   if (inputID === 'brightness' | inputID === 'contrast' | inputID === 'opacity' | inputID === 'saturate') {
+    input.childNodes[3].value = 100;
+    input.childNodes[5].firstElementChild.innerText = '100';
+   } else {
+    input.childNodes[3].value = 0;
+    input.childNodes[5].firstElementChild.innerText = '0';
+   }
+  })
 });
 
 // Enable filters
@@ -116,13 +126,6 @@ downloadBtn.addEventListener("click", () => {
     canvas.height = img.naturalHeight;
     const ctx = canvas.getContext("2d");
 
-    ctx.scale(
-      flipPosition.horizontalFlip ? -1 : 1,
-      flipPosition.verticalFlip ? -1 : 1
-    );
-
-    ctx.filter = getStringsOfFilters();
-
     // Add border radius
     ctx.beginPath();
     ctx.moveTo(0 + borderRadius, 0);
@@ -137,6 +140,14 @@ downloadBtn.addEventListener("click", () => {
     ctx.closePath();
     ctx.clip();
 
+    ctx.scale(
+      flipPosition.horizontalFlip ? -1 : 1,
+      flipPosition.verticalFlip ? -1 : 1
+    );
+
+    ctx.filter = getStringsOfFilters();
+    ctx.save();
+      
     ctx.drawImage(
       img,
       flipPosition.horizontalFlip ? canvas.width * -1 : 0,
