@@ -6,6 +6,7 @@ Image Editor is a tool to edit and apply a border radius to your images then dow
 - Vertical and horizontal flip
 - Apply CSS filters
 - Download images after editing
+- Compatible with all formats
 
 ## Usage
 ![image-Editor](https://user-images.githubusercontent.com/96301803/160282846-b3865f1c-6d7b-454f-a917-ff961fb02370.gif)
