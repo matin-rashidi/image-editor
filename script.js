@@ -6,7 +6,7 @@ const fileInput = document.querySelector("#uploadImage"),
   flipers = document.querySelector(".flip-buttons");
 let addedImage; //Will be taken after adding image
 
-const filters = {
+let filters = {
   brightness: "brightness(100%)",
   blur: "blur(0px)",
   contrast: "contrast(100%)",
@@ -58,23 +58,50 @@ deleteImageBtn.addEventListener("click", () => {
     addedImage.remove();
     fileInput.value = null;
   }
+
+  // Reset radius
+  borderRadius = null;
+
+  // Reset flips
+  flipPosition.verticalFlip = false;
+  flipPosition.horizontalFlip = false;
+
+  // Reset filters
+  filters = {
+    brightness: "brightness(100%)",
+    blur: "blur(0px)",
+    contrast: "contrast(100%)",
+    grayscale: "grayscale(0%)",
+    hue: "hue-rotate(0deg)",
+    invert: "invert(0%)",
+    opacity: "opacity(100%)",
+    saturate: "saturate(100%)",
+    sepia: "sepia(0%)",
+  };
+
+  // Reset inputs
   rangeInputs.forEach((input) => {
-   const inputID = input.childNodes[3].id;
-   if (inputID === 'brightness' | inputID === 'contrast' | inputID === 'opacity' | inputID === 'saturate') {
-    input.childNodes[3].value = 100;
-    input.childNodes[5].firstElementChild.innerText = '100';
-   } else {
-    input.childNodes[3].value = 0;
-    input.childNodes[5].firstElementChild.innerText = '0';
-   }
-  })
+    const inputID = input.childNodes[3].id;
+    if (
+      (inputID === "brightness") |
+      (inputID === "contrast") |
+      (inputID === "opacity") |
+      (inputID === "saturate")
+    ) {
+      input.childNodes[3].value = 100;
+      input.childNodes[5].firstElementChild.innerText = "100";
+    } else {
+      input.childNodes[3].value = 0;
+      input.childNodes[5].firstElementChild.innerText = "0";
+    }
+  });
 });
 
 // Enable filters
 const addFilter = ({ id, value }) => {
-  if (id === 'radius') {
+  if (id === "radius") {
     borderRadius = value;
-    addedImage.style.borderRadius = `${value}px`
+    addedImage.style.borderRadius = `${value}px`;
   }
   for (const key in filters) {
     if (key === id) {
@@ -130,11 +157,26 @@ downloadBtn.addEventListener("click", () => {
     ctx.beginPath();
     ctx.moveTo(0 + borderRadius, 0);
     ctx.lineTo(0 + canvas.width - borderRadius, 0);
-    ctx.quadraticCurveTo(0 + canvas.width, 0, 0 + canvas.width, 0 + borderRadius);
+    ctx.quadraticCurveTo(
+      0 + canvas.width,
+      0,
+      0 + canvas.width,
+      0 + borderRadius
+    );
     ctx.lineTo(0 + canvas.width, 0 + canvas.height - borderRadius);
-    ctx.quadraticCurveTo(0 + canvas.width, 0 + canvas.height, 0 + canvas.width - borderRadius, 0 + canvas.height);
+    ctx.quadraticCurveTo(
+      0 + canvas.width,
+      0 + canvas.height,
+      0 + canvas.width - borderRadius,
+      0 + canvas.height
+    );
     ctx.lineTo(0 + borderRadius, 0 + canvas.height);
-    ctx.quadraticCurveTo(0, 0 + canvas.height, 0, 0 + canvas.height - borderRadius);
+    ctx.quadraticCurveTo(
+      0,
+      0 + canvas.height,
+      0,
+      0 + canvas.height - borderRadius
+    );
     ctx.lineTo(0, 0 + borderRadius);
     ctx.quadraticCurveTo(0, 0, 0 + borderRadius, 0);
     ctx.closePath();
@@ -147,7 +189,7 @@ downloadBtn.addEventListener("click", () => {
 
     ctx.filter = getStringsOfFilters();
     ctx.save();
-      
+
     ctx.drawImage(
       img,
       flipPosition.horizontalFlip ? canvas.width * -1 : 0,
@@ -160,6 +202,6 @@ downloadBtn.addEventListener("click", () => {
       link.href = URL.createObjectURL(blob);
       link.click();
       URL.revokeObjectURL(link.href);
-    }, "image/png");
+    }, "image/*");
   }
 });
